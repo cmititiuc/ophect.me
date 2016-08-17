@@ -1,15 +1,28 @@
 class AddNewProperties < ActiveRecord::Migration
+  DEPRECATED_PROPERTY_KEYS = %w(
+    HeaderName
+    HeaderEmail
+    HeaderSubtitle
+    HeaderGitHubAccountName
+  )
+  NEW_PROPERTY_KEYS = %w(HeaderLeft HeaderRight)
+
   def up
-    properties.each { |k, v| Property.create(:key => k, :value => v) }
+    return unless properties_all_present?
+    new_properties.each { |k, v| Property.create(:key => k, :value => v) }
   end
 
   def down
-    properties.each { |k, _| Property.find_by_key(k).try(:delete) }
+    NEW_PROPERTY_KEYS.each { |k| Property.find_by_key(k).try(:delete) }
   end
 
   private
 
-  def properties
+  def properties_all_present?
+    DEPRECATED_PROPERTY_KEYS.all? { |k| Property.find_by_key(k) }
+  end
+
+  def new_properties
     { 'HeaderLeft' => "#{prop('HeaderName')}\r\n#{prop('HeaderSubtitle')}",
       'HeaderRight' => "#{prop('HeaderEmail')}\r\n#{prop('HeaderGitHubAccountName')}"
     }
