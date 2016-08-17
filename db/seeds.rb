@@ -8,20 +8,19 @@
 if Rails.env == 'development'
   test_users_count = 2
   password = "test1234"
-  test_users_count.times.each do |e|
+  test_users_count.times.each do |i|
     User.new({
-      :email => "test#{e}@example.com",
+      :email => "test#{i}@example.com",
       :password => password,
       :password_confirmation => password
     }).save(:validate => false)
   end
 end
 
-%w(
-  HeaderName
-  HeaderEmail
-  HeaderGitHubAccountName
-  AboutContent
-  HeaderSubtitle
-  WelcomeContent
-).each { |p| Property.create!(key: p, value: nil) }
+{ 'HeaderName' => 'h1. HeaderName',
+  'HeaderEmail' => 'h2. "HeaderEmail":mailto:HeaderEmail',
+  'HeaderGitHubAccountName' => 'h2. "Github":https://github.com/HeaderGitHubAccountName',
+  'AboutContent' => 'AboutContent',
+  'HeaderSubtitle' => 'h2. HeaderSubtitle',
+  'WelcomeContent' => 'h2. WelcomeContent'
+}.each { |k, v| Property.create!(key: k, value: v) }

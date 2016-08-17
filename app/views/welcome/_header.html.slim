@@ -1,11 +1,19 @@
 div class="#{css_class if local_assigns[:css_class]}"
   .col-7-12
-    h1= property('HeaderName')
+    - content = RedCloth.new(property('HeaderName'))
+    - content.filter_html = true
+    = content.to_html.html_safe
     / h3
     /   => link_to 'View Resume', '#'
     /   ' -
     /   = link_to 'Download Resume', '#'
-    h2= property('HeaderSubtitle')
+    - content = RedCloth.new(property('HeaderSubtitle'))
+    - content.filter_html = true
+    = content.to_html.html_safe
   .col-5-12
-    h2= link_to property('HeaderEmail'), "mailto:#{property('HeaderEmail')}"
-    h2= link_to 'GitHub', "https://github.com/#{property('HeaderGitHubAccountName')}"
+    - content = RedCloth.new(property('HeaderEmail'))
+    - content.filter_html = true
+    = content.to_html.html_safe
+    - content = RedCloth.new(property('HeaderGitHubAccountName'))
+    - content.filter_html = true
+    = content.to_html.html_safe
