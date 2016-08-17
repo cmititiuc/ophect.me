@@ -53,3 +53,5 @@ gem 'rails_12factor', group: :production
 gem 'slim-rails'
 
 gem 'RedCloth'
+
+gem 'will_paginate', '~> 3.0.5'

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def index
     @comment = Comment.new
-    @comments = current_user.comments
+    @comments = current_user.comments.paginate(:page => params[:page])
     if params[:filter]
       if params[:filter] == 'nil'
         @comments = @comments.where('commentable_id IS NULL')
