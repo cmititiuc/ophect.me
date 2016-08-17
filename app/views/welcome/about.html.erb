@@ -4,9 +4,7 @@
 <div class="grid grid-pad" style="max-width: 1140px;">
   <div class="col-8-12 push-2-12">
     <h1 style="text-align: center;">About</h1>
-    <% content = RedCloth.new(property('AboutContent')) %>
-    <% content.filter_html = true %>
-    <%= content.to_html.html_safe %>
+    <%= to_textile(prop('AboutContent')) %>
   </div>
 </div>
 

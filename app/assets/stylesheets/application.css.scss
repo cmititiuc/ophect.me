@@ -29,6 +29,11 @@ h1, h2, h3 {
 
 #nav_links_container {
   text-align: center;
+  #active_nav_link {
+    font-weight: bold;
+    font-size: medium;
+    text-decoration: none;
+  }
 }
 
 .grid div, li, p {

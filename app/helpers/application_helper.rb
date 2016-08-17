@@ -1,12 +1,17 @@
 module ApplicationHelper
   def show_nav_link(models)
-    style = 'font-weight: bold; font-size: medium; text-decoration: none;'
     link_params = [models.titleize, send("#{models}_path")]
-    link_params << { :style => style } if controller_name == models
+    link_params << { :id => 'active_nav_link' } if controller_name == models
     link_to(*link_params)
   end
 
-  def property(property)
-    Property.find_by_key(property).try(:value)
+  def prop(key)
+    Property.find_by_key(key).try(:value)
+  end
+
+  def to_textile(text)
+    content = RedCloth.new(text)
+    content.filter_html = true
+    content.to_html.html_safe
   end
 end

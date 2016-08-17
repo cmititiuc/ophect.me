@@ -19,11 +19,7 @@
       <br />
       by: <%= @post.user.email.gsub(/@.*/, '') %>
     </p>
-    <%
-      body = RedCloth.new(@post.body)
-      body.filter_html = true
-    %>
-    <%= body.to_html.html_safe %>
+    <%= to_textile(@post.body) %>
   </div>
 </div>
 
