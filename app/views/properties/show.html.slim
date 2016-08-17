@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Key:
+  = @property.key
+p
+  strong Value:
+  = @property.value
+
+= link_to 'Edit', edit_property_path(@property)
+'|
+= link_to 'Back', properties_path

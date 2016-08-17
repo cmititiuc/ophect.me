@@ -1,0 +1,27 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.header {
+  // position: fixed;
+  background-color: #FFFFFF;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  z-index: 1; /* So header-ghost doesn't obsctruct the link hover effect */
+  div {
+    text-align: center;
+  }
+}
+
+.header-ghost {
+  opacity: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footer {
+  margin-top: 20px;
+  div {
+    text-align: center;
+  }
+}

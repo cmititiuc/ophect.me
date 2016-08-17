@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ophect.me</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<% if user_signed_in? %>
+  <div id="nav_links_container">
+    [
+    <%= link_to 'Welcome', welcome_index_path %>
+    |
+    <%= show_nav_link('posts') %>
+    |
+    <%= show_nav_link('comments') %>
+    |
+    <%= show_nav_link('schedules') %>
+    |
+    <%= show_nav_link('meals') %>
+    |
+    <%= show_nav_link('events') %>
+    |
+    <%= show_nav_link('scheduled_events') %>
+    |
+    <%= show_nav_link('properties') %>
+    ]::[
+    <%= current_user.email %>
+    ]::[
+    <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+    ]
+  </div>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

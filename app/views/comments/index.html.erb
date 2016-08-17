@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<div id="notices" style="position: fixed; width: 98%; margin: 0; padding: 0; top: 35px;"></div>
+
+<div id="new_comment_container" style="width: 500px; margin-left: auto; margin-right: auto; margin-bottom: 2em;">
+  <%= render :partial=>'comments/form' %>
+</div>
+
+<%#= link_to 'remote ajax link',
+             get_comment_comments_path(:id=>@comment.id, :return_path=>comments_path),
+             :remote=>true,
+             :id=>'remote_ajax_comment' %>
+
+<div style="text-align: center;">
+  <%= link_to 'clear filter', comments_path if params[:filter] %>
+  <%= link_to 'none', comments_path(:filter=>'nil') %>
+  <% current_user.events.order(:name).each do |event| %>
+    <%= link_to event.name, comments_path(:filter=>event.id) %>
+  <% end %>
+</div>
+
+<table id="list" style="width: 100%">
+  <% day = nil %>
+  <% @comments.each do |comment| %>
+    <% commentable = comment.commentable_type.constantize.find(comment.commentable_id) rescue nil %>
+    <tr class="comment_container">
+      <td style="white-space: nowrap; font-size: medium; width: 1px;">
+        <% unless day == comment.created_at.strftime('%A') %>
+          <% day = comment.created_at.strftime('%A') %>
+           <%= comment.created_at.strftime('%a, %b %d, %Y') %>
+        <% end %>
+      </td>
+      <td style="font-size: medium; white-space: nowrap; width: 1px;">
+        <%= comment.created_at.strftime('%-I:%M %p') %>
+      </td>
+      <td class="commentable_link" style="width: 1px">
+        <%= link_to commentable.name, commentable if commentable %>
+      </td>
+      <td class="comment" id="comment_<%= comment.id %>" data-id="<%= comment.id %>">
+        <%= simple_format(comment.comment) %>
+      </td>
+      <td class="comment_actions" style="white-space: nowrap; width: 1px;">
+        <%= link_to 'Show', comment %>
+        |
+        <%= link_to 'Edit',
+          edit_comment_path(comment),
+          :remote => true,
+          :class => 'edit'
+        %>
+        |
+        <%= link_to 'Destroy',
+          comment,
+          method: :delete,
+          data: { confirm: 'Are you sure?' },
+          :remote => true,
+          :class => 'destroy'
+        %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<% if @comments.blank? %>
+  <div style="text-align: center; padding: 1em; line-height: 1.5em; font-size: medium;">
+    No comments.
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to 'New Comment', new_comment_path %>

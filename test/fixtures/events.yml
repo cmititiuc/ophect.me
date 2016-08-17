@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Event $LABEL
+  user: one
+
+two:
+  name: Event $LABEL
+  user: two

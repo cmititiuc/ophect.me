@@ -1,0 +1,22 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: ophect_me_development
+  pool: 5
+  timeout: 5000
+  username: postgres
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: ophect_me_test
+  pool: 5
+  timeout: 5000
+  username: postgres
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: ophect_me_production
+  pool: 5
+  timeout: 5000
