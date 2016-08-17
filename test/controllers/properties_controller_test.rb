@@ -3,6 +3,8 @@ require 'test_helper'
 class PropertiesControllerTest < ActionController::TestCase
   setup do
     @property = properties(:one)
+    @new_property = Property.new(:key => 'unique_key', :value => 'value')
+    sign_in User.first
   end
 
   test "should get index" do
@@ -18,7 +20,7 @@ class PropertiesControllerTest < ActionController::TestCase
 
   test "should create property" do
     assert_difference('Property.count') do
-      post :create, property: { key: @property.key, value: @property.value }
+      post :create, property: { key: @new_property.key, value: @new_property.value }
     end
 
     assert_redirected_to property_path(assigns(:property))
