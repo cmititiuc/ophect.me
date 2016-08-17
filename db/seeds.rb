@@ -17,10 +17,15 @@ if Rails.env == 'development'
   end
 end
 
+# deprecated
 { 'HeaderName' => 'h1. HeaderName',
   'HeaderEmail' => 'h2. "HeaderEmail":mailto:HeaderEmail',
   'HeaderGitHubAccountName' => 'h2. "Github":https://github.com/HeaderGitHubAccountName',
+  'HeaderSubtitle' => 'h2. HeaderSubtitle'
+}.each { |k, v| Property.create!(key: k, value: v) }
+
+{ 'WelcomeContent' => 'h2. WelcomeContent',
   'AboutContent' => 'AboutContent',
-  'HeaderSubtitle' => 'h2. HeaderSubtitle',
-  'WelcomeContent' => 'h2. WelcomeContent'
+  'HeaderLeft' => "#{Property.find_by_key('HeaderName').value}\r\n#{Property.find_by_key('HeaderSubtitle').value}",
+  'HeaderRight' => "#{Property.find_by_key('HeaderEmail').value}\r\n#{Property.find_by_key('HeaderGitHubAccountName').value}"
 }.each { |k, v| Property.create!(key: k, value: v) }

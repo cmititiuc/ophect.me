@@ -31,10 +31,14 @@ h1, h2, h3 {
   text-align: center;
 }
 
-.grid div, li, p {
-  /*uncomment for layout guidelines*/
-  /*border: 1px solid red;*/
+.grid div {
   line-height: 150%;
+
+  /*uncomment for layout guidelines*/
+  // border: 1px solid red;
+  // & > * {
+  //   border: 1px solid blue;
+  // }
 }
 
 .welcome {
