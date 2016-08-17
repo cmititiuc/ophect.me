@@ -10,8 +10,8 @@ class AddNewProperties < ActiveRecord::Migration
   def up
     return unless deprecated_props_present?
 
-    { 'HeaderLeft' => "#{prop('HeaderName')}\r\n#{prop('HeaderSubtitle')}",
-      'HeaderRight' => "#{prop('HeaderEmail')}\r\n#{prop('HeaderGitHubAccountName')}"
+    { 'HeaderLeft' => "#{prop('HeaderName')}\r\n\r\n#{prop('HeaderSubtitle')}",
+      'HeaderRight' => "#{prop('HeaderEmail')}\r\n\r\n#{prop('HeaderGitHubAccountName')}"
     }.each { |k, v| Property.create(:key => k, :value => v) }
   end
 

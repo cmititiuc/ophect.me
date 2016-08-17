@@ -27,6 +27,6 @@ end
 prop = ->(k) { Property.find_by_key(k).value }
 { 'WelcomeContent' => 'h2. WelcomeContent',
   'AboutContent' => 'AboutContent',
-  'HeaderLeft' => "#{prop.('HeaderName')}\r\n#{prop.('HeaderSubtitle')}",
-  'HeaderRight' => "#{prop.('HeaderEmail')}\r\n#{prop.('HeaderGitHubAccountName')}"
+  'HeaderLeft' => "#{prop.('HeaderName')}\r\n\r\n#{prop.('HeaderSubtitle')}",
+  'HeaderRight' => "#{prop.('HeaderEmail')}\r\n\r\n#{prop.('HeaderGitHubAccountName')}"
 }.each { |k, v| Property.create!(key: k, value: v) }
