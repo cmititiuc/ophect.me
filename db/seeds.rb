@@ -24,8 +24,9 @@ end
   'HeaderSubtitle' => 'h2. HeaderSubtitle'
 }.each { |k, v| Property.create!(key: k, value: v) }
 
+prop = ->(k) { Property.find_by_key(k).value }
 { 'WelcomeContent' => 'h2. WelcomeContent',
   'AboutContent' => 'AboutContent',
-  'HeaderLeft' => "#{Property.find_by_key('HeaderName').value}\r\n#{Property.find_by_key('HeaderSubtitle').value}",
-  'HeaderRight' => "#{Property.find_by_key('HeaderEmail').value}\r\n#{Property.find_by_key('HeaderGitHubAccountName').value}"
+  'HeaderLeft' => "#{prop.('HeaderName')}\r\n#{prop.('HeaderSubtitle')}",
+  'HeaderRight' => "#{prop.('HeaderEmail')}\r\n#{prop.('HeaderGitHubAccountName')}"
 }.each { |k, v| Property.create!(key: k, value: v) }
