@@ -16,8 +16,11 @@ module ApplicationHelper
   end
 
   def to_markdown(text)
-    @markdown ||= Redcarpet::Markdown
-      .new(Redcarpet::Render::HTML, :fenced_code_blocks => true)
+    @markdown ||= Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML,
+      :fenced_code_blocks => true,
+      :strikethrough => true
+    )
 
     @markdown.render(text).html_safe
   end

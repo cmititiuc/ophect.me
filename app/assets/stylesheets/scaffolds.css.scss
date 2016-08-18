@@ -14,7 +14,15 @@ p, ol, ul, td {
 
 pre, code {
   background-color: #eee;
+}
+
+pre {
   padding: 10px;
+  font-size: 11px;
+}
+
+code {
+  padding: 5px;
   font-size: 11px;
 }
 
