@@ -9,7 +9,7 @@ module ApplicationHelper
     Property.find_by_key(key).try(:value)
   end
 
-  def to_markdown(text)
+  def to_textile(text)
     content = RedCloth.new(text.to_s)
     content.filter_html = true
     content.to_html.html_safe
