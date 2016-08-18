@@ -1,0 +1,24 @@
+p id="notice" = notice
+.grid.grid-pad
+  .col-8-12
+    - if user_signed_in? && current_user.posts.find_by_id(@post.id)
+      div style="float: right;"
+        => link_to 'Edit', edit_post_path(@post)
+        = link_to 'Destroy',
+          @post,
+          method: :delete,
+          data: { confirm: 'Are you sure?' }
+    = link_to 'Back', posts_path
+    h1 style="text-align: center;" = @post.title
+    p style="padding-bottom: 10px; text-align: center;"
+      ' published:
+      = @post.created_at.to_date.strftime('%a, %b %d, %Y')
+      br
+      ' by:
+      = @post.user.email.gsub(/@.*/, '')
+    = to_markdown(@post.body)
+.grid.footer
+  .col-2-12
+    h3 = link_to 'Main', root_path
+  .col-2-12
+    h3 = link_to 'Sign In', new_user_session_path

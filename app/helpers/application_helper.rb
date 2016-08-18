@@ -9,9 +9,16 @@ module ApplicationHelper
     Property.find_by_key(key).try(:value)
   end
 
-  def to_textile(text)
+  def to_markdown(text)
     content = RedCloth.new(text.to_s)
     content.filter_html = true
     content.to_html.html_safe
+  end
+
+  def to_markdown(text)
+    @markdown ||= Redcarpet::Markdown
+      .new(Redcarpet::Render::HTML, :fenced_code_blocks => true)
+
+    @markdown.render(text).html_safe
   end
 end
